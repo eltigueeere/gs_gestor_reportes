@@ -5,7 +5,7 @@
             "name": "Spring Boot-SpringBootDataJpaApplication<spring-boot-data-jpa>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "com.bolsadeideas.springboot.app.SpringBootDataJpaApplication",
+            "mainClass": "com.gestor_reportes.springboot.app.SpringBootDataJpaApplication",
             "projectName": "spring-boot-data-jpa",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
