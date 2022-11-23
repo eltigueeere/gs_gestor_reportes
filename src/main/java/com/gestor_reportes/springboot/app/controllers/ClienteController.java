@@ -65,7 +65,6 @@ public class ClienteController {
 		try {
 			recurso = uploadFileService.load(filename);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -89,7 +88,7 @@ public class ClienteController {
 		return "ver";
 	}
 
-	@RequestMapping(value = {"/listar", "/"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/listar"}, method = RequestMethod.GET)
 	public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model,
 			Authentication authentication,
 			HttpServletRequest request) {
