@@ -6,13 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.gestor_reportes.springboot.app.models.service.IUploadFileService;
 
 @SpringBootApplication
 public class SpringBootDataJpaApplication implements CommandLineRunner {
-
-	@Autowired
-	IUploadFileService uploadFileService;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -23,9 +19,6 @@ public class SpringBootDataJpaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		uploadFileService.deleteAll();
-		uploadFileService.init();
 		
 		String password = "12345";
 		
