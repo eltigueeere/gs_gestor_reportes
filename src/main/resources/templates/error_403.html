@@ -1,26 +1,67 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head th:replace="layout/layout :: head"></head>
+
 <body>
+  <nav th:replace="layout/layout :: navbar"></nav>
+  <aside th:replace="layout/layout :: aside"></aside>
 
-	<header th:replace="layout/layout :: header"></header>
 
-	<div class="container py-4">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Revición y distribución de reportes</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Revición y distribución de reportes</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
 
-		<div class="card bg-danger text-white">
-			<div class="card-header">Error: Acceso Denegado!</div>
-			<div class="card-body">
-				<h5 class="card-title">
-					Los sentimos <span th:text="${#authentication.name}"></span>,
-					NO tienes permisos para acceder a este recurso.
-				</h5>
-				<a th:href="@{/listar}" class="btn btn-outline-light" role="button">Ir
-					al inicio</a>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+           
+			<div class="container py-4">
 
+				<div class="card bg-danger text-white">
+					<div class="card-header">Error: Acceso Denegado!</div>
+					<div class="card-body">
+						<h5 class="card-title">
+							Los sentimos <span th:text="${#authentication.name}"></span>,
+							NO tienes permisos para acceder a este recurso.
+						</h5>
+						<a th:href="@{/listar}" class="btn btn-outline-light" role="button">Ir
+							al inicio</a>
+			
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
+			
+            
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
 
-	<footer th:replace="layout/layout :: footer"></footer>
+
+
+  <footer th:replace="layout/layout :: footer"></footer>
 </body>
+
 </html>

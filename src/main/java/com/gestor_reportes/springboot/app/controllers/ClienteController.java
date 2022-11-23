@@ -85,7 +85,7 @@ public class ClienteController {
 		}
 
 		model.put("cliente", cliente);
-		model.put("titulo", "Detalle cliente: " + cliente.getNombre());
+		model.put("titulo", "Detalle usuario: " + cliente.getNombre());
 		return "ver";
 	}
 
@@ -129,7 +129,7 @@ public class ClienteController {
 		Page<Cliente> clientes = clienteService.findAll(pageRequest);
 
 		PageRender<Cliente> pageRender = new PageRender<Cliente>("/listar", clientes);
-		model.addAttribute("titulo", "Listado de clientes");
+		model.addAttribute("titulo", "Listado de usuarios.");
 		model.addAttribute("clientes", clientes);
 		model.addAttribute("page", pageRender);
 		return "listar";
@@ -141,7 +141,7 @@ public class ClienteController {
 
 		Cliente cliente = new Cliente();
 		model.put("cliente", cliente);
-		model.put("titulo", "Crear Cliente");
+		model.put("titulo", "Crear Usuario");
 		return "form";
 	}
 
