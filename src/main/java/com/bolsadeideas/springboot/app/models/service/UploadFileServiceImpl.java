@@ -75,7 +75,6 @@ public class UploadFileServiceImpl implements IUploadFileService {
 
 	@Override
 	public void init() throws IOException {
-		// TODO Auto-generated method stub
 		Files.createDirectory(Paths.get(UPLOADS_FOLDER));
 	}
 }
