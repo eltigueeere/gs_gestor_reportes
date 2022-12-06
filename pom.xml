@@ -76,16 +76,22 @@
 			<artifactId>ojdbc8</artifactId>
 			<version>19.3</version>
 		</dependency>
+		<!--ssh-->
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+			<version>0.1.55</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
 			<!-- LIBERTY  -->
-			<plugin>
+			<!--<plugin>
 				<groupId>io.openliberty.tools</groupId>
 				<artifactId>liberty-maven-plugin</artifactId>
 				<version>3.1</version>
-			</plugin>
+			</plugin>-->
 			<!--  LIBERTY -->
 			<!--<plugin>
 				<groupId>io.openliberty.tools</groupId>
@@ -102,10 +108,10 @@
 				</configuration>
 			</plugin>-->
 			<!-- spring  -->
-			<!--<plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>-->
+			</plugin>
 		</plugins>
 	</build>
 
