@@ -3,6 +3,7 @@ package com.gestor_reportes.springboot.app.domain;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.jcraft.jsch.ChannelExec;
@@ -19,15 +20,15 @@ public class Conection {
     String password = "Telcel01#";
     int port = 22;
     String command = "sh /u01/Telcel/DATA/GestorReportes/gestor_reportes.sh ";
-    String remoteFile = "/u01/Telcel/DATA/GestorReportes/list_folders.txt";
+    String remoteFile;
     String subComand;
-    public Conection(String subComand) {
+    public Conection(String subComand, String remoteFile) {
         this.subComand = subComand;
+        this.remoteFile = "/u01/Telcel/DATA/GestorReportes/".concat(remoteFile);
     }
 
-    public String[] downloadInfo() throws JSchException, SftpException{
-        String[] files = new String[299];
-        int index = 0;
+    public ArrayList<String> downloadInfo() throws JSchException, SftpException{
+        ArrayList<String> files = new ArrayList<String>();
         JSch jsch = new JSch();
         Session session = jsch.getSession(username, host, port);
         session.setPassword(password);
@@ -44,9 +45,7 @@ public class Conection {
 
         try (Scanner scanner = new Scanner(new InputStreamReader(inputStream))) {
             while (scanner.hasNextLine()) {
-                files[index] = scanner.nextLine();
-                index=index+1;
-                System.out.println(files[index]);
+                files.add(scanner.nextLine());
             }
         }
         return files;
