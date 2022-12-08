@@ -20,6 +20,21 @@ download_folders() {
 
 }
 
+move_and_backup() {
+    # inicia move_and_backup
+    rm /u01/Telcel/DATA/GestorReportes/move_and_backup.txt
+    ls  $( find /u01/Telcel/REPORTS/BESGestorReports/done -type f -name $1 ) > /u01/Telcel/DATA/GestorReportes/move_and_backup.txt
+}
+
+mv_wy() {
+    #inicia mv_wy
+    chmod 775 /u01/Telcel/REPORTS/BESGestorReports/send/ -R;
+    mkdir /u01/Telcel/REPORTS/BESGestorReports/send/$2/HISTORICO/$3;
+    mkdir /u01/Telcel/REPORTS/BESGestorReports/send/$2/HISTORICO/$3/$4;
+    mv $1 /u01/Telcel/REPORTS/BESGestorReports/send/$2/HISTORICO/$3/$4/;
+    echo "Fin post move_and_backup"
+}
+
 download_files() {
     # inicia download_files
     rm /u01/Telcel/DATA/GestorReportes/download_file.txt
@@ -37,7 +52,11 @@ then
     download_files $2
 elif [ $1 = "move_and_backup" ]
 then
-    echo "inicia move and backup"
+    move_and_backup $2
+elif [ $1 = "mv_wy" ]
+then
+    mv_wy $2 $3 $4 $5
 else
     echo "no es parametro"
 fi
+

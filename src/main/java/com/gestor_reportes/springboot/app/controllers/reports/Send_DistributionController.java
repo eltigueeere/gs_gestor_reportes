@@ -26,6 +26,39 @@ public class Send_DistributionController {
 
     Assets assets = new Assets();
 
+    @Secured({ "ROLE_ADMIN", "ROLE_MESA_CONTROL" })
+    @GetMapping("/move_and_backup/{file}")
+    public String getMoveFile(@PathVariable(value = "file") String file, Model model) throws Exception {
+        Conection conect = new Conection("move_and_backup ".concat(file), "move_and_backup.txt");
+        ArrayList<String> mv_file = new ArrayList<String>();
+        String dirDestino="";
+        String reporte="";
+        String fecha="";
+        conect.exeSsh();
+        mv_file = conect.downloadInfo();
+        String[] parts = mv_file.get(0).split("/");
+        for (int i = 0; i < mv_file.get(0).length(); i++) {
+            if(parts[i].equals("done")){
+                //Directory
+                reporte=parts[i+1];
+                fecha=parts[i+2];
+                if ( assets.getTasacion().contains(parts[i+1]) )  {
+                    dirDestino = "TASACION";
+                    break;
+                } else if( assets.getFacturación().contains(parts[i+1])){
+                    dirDestino = "COBRANZA";
+                    break;
+                }else {
+                    System.out.println("No se encontro destino");
+                    break;
+                }
+            }
+          }
+          conect.exeSshWitchParam("mv_wy " + mv_file.get(0) +" "+ dirDestino +" "+reporte+" "+fecha );
+        return "redirect:/pre_revision_y_distribucion_de_reportes";
+    }
+
+    //This for resourse server
     @RequestMapping(value = "downloadTestFile", method = RequestMethod.GET)
     public void getSteamingFile1(HttpServletResponse response) throws IOException {
         response.setContentType("application/txt");
@@ -37,6 +70,7 @@ public class Send_DistributionController {
         }
     }
 
+    //this locate resource on server
     @Secured({ "ROLE_ADMIN", "ROLE_MESA_CONTROL" })
     @GetMapping("/download_file/{file}")
     public String getDownload_file(@PathVariable(value = "file") String file, Model model) throws Exception {
