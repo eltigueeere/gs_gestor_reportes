@@ -1,13 +1,20 @@
 package com.gestor_reportes.springboot.app.controllers.reports;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gestor_reportes.springboot.app.common.Assets;
 import com.gestor_reportes.springboot.app.domain.Conection;
@@ -16,11 +23,21 @@ import com.jcraft.jsch.SftpException;
 
 @Controller
 public class Send_DistributionController {
-    
+
     Assets assets = new Assets();
 
-    
-    @Secured({"ROLE_ADMIN", "ROLE_MESA_CONTROL"})
+    @RequestMapping(value = "downloadTestFile", method = RequestMethod.GET)
+    public void getSteamingFile1(HttpServletResponse response) throws IOException {
+        response.setContentType("application/txt");
+        response.setHeader("Content-Disposition", "attachment; filename=\"test.txt\"");
+        InputStream inputStream = new FileInputStream(new File("C:\\Users\\jguerrero\\Downloads\\lalo.txt"));
+        int nRead;
+        while ((nRead = inputStream.read()) != -1) {
+            response.getWriter().write(nRead);
+        }
+    }
+
+    @Secured({ "ROLE_ADMIN", "ROLE_MESA_CONTROL" })
     @GetMapping("/download_file/{file}")
     public String getDownload_file(@PathVariable(value = "file") String file, Model model) throws Exception {
         Conection conect = new Conection("download_files ".concat(file), "download_file.txt");
