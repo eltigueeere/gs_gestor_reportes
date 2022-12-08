@@ -22,9 +22,14 @@ public class Send_DistributionController {
     
     @Secured({"ROLE_ADMIN", "ROLE_MESA_CONTROL"})
     @GetMapping("/download_file/{file}")
-    public String getDownload_file(@PathVariable(value = "file") String file, Model model) {
-        //Conection conect = new Conection("download_folders ", "download_folders.txt");
-        return "vieFromMenu/revision_y_distribucion_de_reportes.html";
+    public String getDownload_file(@PathVariable(value = "file") String file, Model model) throws Exception {
+        Conection conect = new Conection("download_files ".concat(file), "download_file.txt");
+        ArrayList<String> down_file = new ArrayList<String>();
+        conect.exeSsh();
+        down_file = conect.downloadInfo();
+        conect.downloadFile(down_file.get(0), "C:\\Users\\jguerrero\\Downloads\\".concat(file));
+        
+        return "redirect:/";
     }
 
     @Secured({"ROLE_ADMIN", "ROLE_MESA_CONTROL"})

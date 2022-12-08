@@ -3,7 +3,8 @@
 
 #Description parameters
 #list_folders 
-#download_folders 
+#download_folders
+#download_files 
 #move_and_backup
 
 
@@ -19,12 +20,21 @@ download_folders() {
 
 }
 
+download_files() {
+    # inicia download_files
+    rm /u01/Telcel/DATA/GestorReportes/download_file.txt
+    ls  $( find /u01/Telcel/REPORTS/BESGestorReports/done -type f -name $1 ) > /u01/Telcel/DATA/GestorReportes/download_file.txt
+}
+
 if [ $1 = "list_folders" ]
 then
     list_folders
 elif [ $1 = "download_folders" ]
 then
     download_folders $2
+elif [ $1 = "download_files" ]
+then
+    download_files $2
 elif [ $1 = "move_and_backup" ]
 then
     echo "inicia move and backup"
