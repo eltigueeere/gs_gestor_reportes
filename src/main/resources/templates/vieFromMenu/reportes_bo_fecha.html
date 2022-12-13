@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+    <nav th:replace="layout/layout :: navbar"></nav>
+    <aside th:replace="layout/layout :: aside"></aside>
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Revición de reportes</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Revición de reportes</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <p th:text="${status} ?: 'UNKNOWN'"></p>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Seleccina el reporte o reportes a ejecutar por periodo.</h3> <br>
+                                <form th:action="@{/form_reportes_bo_fecha}" th:object="${reportes}" method="post"
+                                    enctype="multipart/form-data">
+                                    <label for="reportes" class="col-sm-2 col-form-label">Reportes:</label>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <input type="checkbox" id="0XW_201" name="0XW_201" value="0XW_201"><span> 0XW_201</span><br>
+                                            <input type="checkbox" id="1RH_201" name="1RH_201" value="1RH_201"><span> 1RH_201</span><br>
+                                            <input type="checkbox" id="698_071" name="698_071" value="698_071"><span> 698_071</span><br>
+                                            <input type="checkbox" id="CRD_REV" name="CRD_REV" value="CRD_REV"><span> CRD_REV</span><br>
+                                            <input type="checkbox" id="0XW_691" name="0XW_691" value="0XW_691"><span> 0XW_691</span><br>
+                                            <input type="checkbox" id="1RH_691" name="1RH_691" value="1RH_691"><span> 1RH_691</span><br>
+                                            <input type="checkbox" id="NUE_FMX" name="NUE_FMX" value="NUE_FMX"><span> NUE_FMX</span><br>
+                                            <input type="checkbox" id="CRD_DGA" name="CRD_DGA" value="CRD_DGA"><span> CRD_DGA</span><br>
+                                            <input type="checkbox" id="1RE_69C" name="1RE_69C" value="1RE_69C"><span> 1RE_69C</span><br>
+                                            <input type="checkbox" id="1XB_TEL" name="1XB_TEL" value="1XB_TEL"><span> 1XB_TEL</span><br>
+                                            <input type="checkbox" id="467_441" name="467_441" value="467_441"><span> 467_441</span><br>
+                                        </div>
+                                        <div class="col-6">
+                                            
+                                            <input type="checkbox" id="CRD_FIN" name="CRD_FIN" value="CRD_FIN"><span> CRD_FIN</span><br>
+                                            <input type="checkbox" id="1RE_201" name="1RE_201" value="1RE_201"><span> 1RE_201</span><br>
+                                            <input type="checkbox" id="23O_CRR" name="23O_CRR" value="23O_CRR"><span> 23O_CRR</span><br>
+                                            <input type="checkbox" id="CRD_SMD" name="CRD_SMD" value="CRD_SMD"><span> CRD_SMD</span><br>
+                                            <input type="checkbox" id="CRD_SMF" name="CRD_SMF" value="CRD_SMF"><span> CRD_SMF</span><br>
+                                            <input type="checkbox" id="1RE_691" name="1RE_691" value="1RE_691"><span> 1RE_691</span><br>
+                                            <input type="checkbox" id="42O_420" name="42O_420" value="42O_420"><span> 42O_420</span><br>
+                                            <input type="checkbox" id="CRD_RS1" name="CRD_RS1" value="CRD_RS1"><span> CRD_RS1</span><br>
+                                            <input type="checkbox" id="682D_111" name="682D_111" value="682D_111"><span> 682D_111</span><br>
+                                            <input type="checkbox" id="1RH_69C" name="1RH_69C" value="1RH_69C"><span> 1RH_69C</span><br>
+                                            <input type="checkbox" id="467_441" name="467_441" value="467_441"><span> 467_441</span><br>
+                                            <input type="checkbox" id="CRD_CSF" name="CRD_CSF" value="CRD_CSF"><span> CRD_CSF</span><br>
+                                            <input type="checkbox" id="952_192" name="952_192" value="952_192"><span> 952_192</span><br>
+                                        </div>
+                                    </div>
+                                    <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha inicio:</label>
+                                    <div class="form-control-group row">
+                                        <div class="col-sm-6">
+                                            <input type="date" id="fecha_inicio" name="fecha_inicio"
+                                            value="2022-09-23"
+                                            min="2018-01-01">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <input type="submit" th:value="Ejecutar" class="btn btn-secondary" />
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+                <div class="card-body table-responsive p-0">
+
+
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+
+
+    <footer th:replace="layout/layout :: footer"></footer>
+</body>
+
+</html>

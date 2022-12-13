@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+    <nav th:replace="layout/layout :: navbar"></nav>
+    <aside th:replace="layout/layout :: aside"></aside>
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Revición de reportes</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Revición de reportes</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <p th:text="${status} ?: 'UNKNOWN'"></p>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Seleccina el reporte o reportes a ejecutar por fecha.</h3> <br>
+                                <form th:action="@{/form_reportes_bo_periodo}" th:object="${reportes}" method="post"
+                                    enctype="multipart/form-data">
+                                    <label for="reportes" class="col-sm-2 col-form-label">Reportes:</label>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <input type="checkbox" id="682_111" name="682_111" value="682_111"><span> 682_111</span><br>
+                                            <input type="checkbox" id="0DD_143" name="0DD_143" value="0DD_143"><span> 0DD_143</span><br>
+                                            <input type="checkbox" id="682_112" name="682_112" value="682_112"><span> 682_112</span><br>
+                                            <input type="checkbox" id="0DP_231" name="0DP_231" value="0DP_231"><span> 0DP_231</span><br>
+                                            <input type="checkbox" id="682_113" name="682_113" value="682_113"><span> 682_113</span><br>
+                                            <input type="checkbox" id="21K_C0P" name="21K_C0P" value="21K_C0P"><span> 21K_C0P</span><br>
+                                            <input type="checkbox" id="682_114" name="682_114" value="682_114"><span> 682_114</span><br>
+                                            <input type="checkbox" id="682_115" name="682_115" value="682_115"><span> 682_115</span><br>
+                                            <input type="checkbox" id="0DD_141" name="0DD_141" value="0DD_141"><span> 0DD_141</span><br>
+                                        </div>
+                                    </div>
+                                    <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha inicio:</label>
+                                    <div class="form-control-group row">
+                                        <div class="col-sm-6">
+                                            <input type="date" id="fecha_inicio" name="fecha_inicio"
+                                            value="2022-09-23"
+                                            min="2018-01-01">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="date" id="fecha_fin" name="fecha_fin"
+                                            value="2022-09-30"
+                                            min="2018-01-01">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <input type="submit" th:value="Ejecutar" class="btn btn-secondary" />
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+                <div class="card-body table-responsive p-0">
+
+
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+
+
+    <footer th:replace="layout/layout :: footer"></footer>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+    <nav th:replace="layout/layout :: navbar"></nav>
+    <aside th:replace="layout/layout :: aside"></aside>
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Revición de reportes</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Revición de reportes</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <p th:text="${status} ?: 'UNKNOWN'"></p>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Seleccina el reporte o reportes a ejecutar por ciclo.</h3> <br>
+                                <form th:action="@{/form_reportes_bo_ciclo}" th:object="${reportes}" method="post"
+                                    enctype="multipart/form-data">
+                                    <label for="reportes" class="col-sm-2 col-form-label">Reportes:</label>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <input type="checkbox" id="414_901" name="414_901" value="414_901"><span> 414_901</span><br>
+                                            <input type="checkbox" id="081_011" name="081_011" value="081_011"><span> 081_011</span><br>
+                                            <input type="checkbox" id="22O_NDC" name="22O_NDC" value="22O_NDC"><span> 22O_NDC</span><br>
+                                            <input type="checkbox" id="726_961" name="726_961" value="726_961"><span> 726_961</span><br>
+                                            <input type="checkbox" id="952_193" name="952_193" value="952_193"><span> 952_193</span><br>
+                                            <input type="checkbox" id="492_14C" name="492_14C" value="492_14C"><span> 492_14C</span><br>
+                                            <input type="checkbox" id="11Y_341" name="11Y_341" value="11Y_341"><span> 11Y_341</span><br>
+                                            <input type="checkbox" id="334_87O" name="334_87O" value="334_87O"><span> 334_87O</span><br>
+                                            <input type="checkbox" id="699_AMC" name="699_AMC" value="699_AMC"><span> 699_AMC</span><br>
+                                            <input type="checkbox" id="0AW_X71" name="0AW_X71" value="0AW_X71"><span> 0AW_X71</span><br>
+                                            <input type="checkbox" id="22O_861" name="22O_861" value="22O_861"><span> 22O_861</span><br>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="checkbox" id="952_194" name="952_194" value="952_194"><span> 952_194</span><br>
+                                            <input type="checkbox" id="676_611" name="676_611" value="676_611"><span> 676_611</span><br>
+                                            <input type="checkbox" id="22O_862" name="22O_862" value="22O_862"><span> 22O_862</span><br>
+                                            <input type="checkbox" id="673_251" name="673_251" value="673_251"><span> 673_251</span><br>
+                                            <input type="checkbox" id="387_761" name="387_761" value="387_761"><span> 387_761</span><br>
+                                            <input type="checkbox" id="676_612" name="676_612" value="676_612"><span> 676_612</span><br>
+                                            <input type="checkbox" id="22O_864" name="22O_864" value="22O_864"><span> 22O_864</span><br>
+                                            <input type="checkbox" id="699_081" name="699_081" value="699_081"><span> 699_081</span><br>
+                                            <input type="checkbox" id="952_191" name="952_191" value="952_191"><span> 952_191</span><br>
+                                            <input type="checkbox" id="00L_371" name="00L_371" value="00L_371"><span> 00L_371</span><br>
+                                            <input type="checkbox" id="22O_865" name="22O_865" value="22O_865"><span> 22O_865</span><br>
+                                            <input type="checkbox" id="721_061" name="721_061" value="721_061"><span> 721_061</span><br>
+                                            <input type="checkbox" id="952_192" name="952_192" value="952_192"><span> 952_192</span><br>
+                                        </div>
+                                    </div>
+                                    <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha inicio:</label>
+                                    <div class="form-control-group row">
+                                        <div class="col-sm-6">
+                                            <input type="date" id="fecha_inicio" name="fecha_inicio"
+                                            value="2022-09-23"
+                                            min="2018-01-01">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <input type="submit" th:value="Ejecutar" class="btn btn-secondary" />
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+                <div class="card-body table-responsive p-0">
+
+
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+
+
+    <footer th:replace="layout/layout :: footer"></footer>
+</body>
+
+</html>
