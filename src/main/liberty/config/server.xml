@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="new server">
+
+    <!-- Enable features -->
+    <featureManager>
+        <feature>jaxb-2.2</feature>
+        <feature>jsf-2.2</feature>
+        <feature>jsp-2.3</feature>
+        <feature>localConnector-1.0</feature>
+        <feature>jdbc-4.2</feature>
+        <feature>jndi-1.0</feature>
+    </featureManager>
+
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="127.0.0.1"
+                  httpPort="9080"
+                  httpsPort="9443" />
+
+    <!-- Automatically expand WAR files and EAR files -->
+    <applicationManager autoExpand="true"/>
+
+        <applicationMonitor updateTrigger="mbean"/>
+
+        <httpSession idLength="28"/>
+
+        <!--<library id="OracleLib">
+                <fileset dir="C:\\Users\\AsTecI\\Downloads\\" includes="ojdbc8.jar"/>
+        </library>-->
+
+
+        <dataSource id="portalReportes" jndiName="jdbc/portalReportes">
+        <connectionManager agedTimeout="0" connectionTimeout="90" maxPoolSize="120" minPoolSize="0" purgePolicy="EntirePool" reapTime="2m"/>
+        <jdbcDriver libraryRef="OracleLib"/>
+        <!--PROD
+        <properties.oracle URL="jdbc:oracle:thin:@10.119.79.21:1522/pRepTnfDB" password="telcel#01" user="SvGstrRep"/>-->
+        <!--DEV  -->
+        <properties.oracle URL="jdbc:oracle:thin:@10.191.209.188:1540/PREPTNFDB" password="telcel03#" user="svreptnf_adm"/> 
+        </dataSource>
+
+
+</server>

@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.gestor_reportes.springboot.datajpa.app</groupId>
-	<artifactId>spring-boot-data-jpa</artifactId>
+	<artifactId>PortalReportes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
-	<name>spring-boot-data-jpa</name>
+	<name>PortalReportes</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -93,6 +93,8 @@
 	</dependencies>
 
 	<build>
+		<defaultGoal>clean install</defaultGoal>
+		<finalName>PortalReportes</finalName>
 		<plugins>
 			<!-- LIBERTY  -->
 			<!--<plugin>
@@ -100,8 +102,8 @@
 				<artifactId>liberty-maven-plugin</artifactId>
 				<version>3.1</version>
 			</plugin>-->
-			<!--  LIBERTY -->
-			<!--<plugin>
+			<!--  LIBERTY
+			<plugin>
 				<groupId>io.openliberty.tools</groupId>
 				<artifactId>liberty-maven-plugin</artifactId>
 				<version>3.2</version>
@@ -114,7 +116,7 @@
 					</assemblyArtifact> 
 					<serverStartTimeout>120</serverStartTimeout> 
 				</configuration>
-			</plugin>-->
+			</plugin>  -->
 			<!-- spring  -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

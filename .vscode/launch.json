@@ -2,6 +2,16 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Spring Boot-SpringBootDataJpaApplication<PortalReportes>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.gestor_reportes.springboot.app.SpringBootDataJpaApplication",
+            "projectName": "PortalReportes",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-SpringBootDataJpaApplication<spring-boot-data-jpa>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
