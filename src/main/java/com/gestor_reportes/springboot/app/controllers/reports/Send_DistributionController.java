@@ -45,7 +45,7 @@ public class Send_DistributionController {
                 if ( assets.getTasacion().contains(parts[i+1]) )  {
                     dirDestino = "TASACION";
                     break;
-                } else if( assets.getFacturación().contains(parts[i+1])){
+                } else if( assets.getFacturacion().contains(parts[i+1])){
                     dirDestino = "COBRANZA";
                     break;
                 }else {

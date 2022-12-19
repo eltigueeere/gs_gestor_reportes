@@ -7,7 +7,7 @@ public class Assets {
     ArrayList<String> activaciones = new ArrayList<String>();
     ArrayList<String> cobranza = new ArrayList<String>();
     ArrayList<String> errores = new ArrayList<String>();
-    ArrayList<String> facturación = new ArrayList<String>();
+    ArrayList<String> facturacion = new ArrayList<String>();
     ArrayList<String> tasacion = new ArrayList<String>();
 
     public ArrayList<String> cleanOut(ArrayList<String> files) {
@@ -32,9 +32,9 @@ public class Assets {
         return errores;
     }
 
-    public ArrayList<String> getFacturación() {
-        facturación.add("METRICAS_DIARIO");
-        return facturación;
+    public ArrayList<String> getFacturacion() {
+        facturacion.add("METRICAS_DIARIO");
+        return facturacion;
     }
 
     public ArrayList<String> getTasacion() {
