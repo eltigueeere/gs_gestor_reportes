@@ -28,10 +28,12 @@ move_and_backup() {
 
 mv_wy() {
     #inicia mv_wy
-    chmod 775 /u01/Telcel/REPORTS/BESGestorReports/send/ -R;
-    mkdir /u01/Telcel/REPORTS/BESGestorReports/send/$2/HISTORICO/$3;
-    mkdir /u01/Telcel/REPORTS/BESGestorReports/send/$2/HISTORICO/$3/$4;
-    mv $1 /u01/Telcel/REPORTS/BESGestorReports/send/$2/HISTORICO/$3/$4/;
+    ##chmod 775 /u01/Telcel/REPORTS/BESGestorReports/send/ -R;
+    mkdir /u01/Telcel/DATA/GestorReportes/send_backup;
+    mkdir /u01/Telcel/DATA/GestorReportes/send_backup/$2;
+    mkdir /u01/Telcel/DATA/GestorReportes/send;
+    cp -p $1 /u01/Telcel/DATA/GestorReportes/send;
+    mv $1 /u01/Telcel/DATA/GestorReportes/send_backup/$2;
     echo "Fin post move_and_backup"
 }
 
@@ -39,6 +41,10 @@ download_files() {
     # inicia download_files
     rm /u01/Telcel/DATA/GestorReportes/download_file.txt
     ls  $( find /u01/Telcel/REPORTS/BESGestorReports/done -type f -name $1 ) > /u01/Telcel/DATA/GestorReportes/download_file.txt
+}
+
+send_ftp() {
+    https://www.geeksforgeeks.org/shell-script-to-put-file-in-a-ftp-server/
 }
 
 if [ $1 = "list_folders" ]
@@ -55,7 +61,10 @@ then
     move_and_backup $2
 elif [ $1 = "mv_wy" ]
 then
-    mv_wy $2 $3 $4 $5
+    mv_wy $2 $3 
+elif [ $1 = "send_ftp" ]
+then
+    send_ftp $2 $3
 else
     echo "no es parametro"
 fi

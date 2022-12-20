@@ -41,20 +41,10 @@ public class Send_DistributionController {
             if(parts[i].equals("done")){
                 //Directory
                 reporte=parts[i+1];
-                fecha=parts[i+2];
-                if ( assets.getTasacion().contains(parts[i+1]) )  {
-                    dirDestino = "TASACION";
-                    break;
-                } else if( assets.getFacturacion().contains(parts[i+1])){
-                    dirDestino = "COBRANZA";
-                    break;
-                }else {
-                    System.out.println("No se encontro destino");
-                    break;
-                }
+                break;
             }
           }
-          conect.exeSshWitchParam("mv_wy " + mv_file.get(0) +" "+ dirDestino +" "+reporte+" "+fecha );
+          conect.exeSshWitchParam("mv_wy " + mv_file.get(0) +" "+ reporte );
         return "redirect:/pre_revision_y_distribucion_de_reportes";
     }
 
