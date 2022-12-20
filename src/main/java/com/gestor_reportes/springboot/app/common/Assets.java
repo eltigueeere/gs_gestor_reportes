@@ -1,14 +1,36 @@
 package com.gestor_reportes.springboot.app.common;
 
 import java.util.ArrayList;
-
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 public class Assets {
 
-    ArrayList<String> activaciones = new ArrayList<String>();
-    ArrayList<String> cobranza = new ArrayList<String>();
-    ArrayList<String> errores = new ArrayList<String>();
-    ArrayList<String> facturacion = new ArrayList<String>();
-    ArrayList<String> tasacion = new ArrayList<String>();
+    public String readPropertis(String reporte) {
+        String ruta = "";
+        Properties properties = new Properties();
+        java.net.URL url = ClassLoader.getSystemResource("ftp.properties");
+
+        try  {
+            properties.load(url.openStream());
+        } catch (FileNotFoundException fie) {
+            fie.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*
+        System.out.println(properties.getProperty("hostname"));
+        Set<String> keys = properties.stringPropertyNames();
+        for (String key : keys) {
+            if (key.equals(reporte )){
+                ruta = key;
+            }
+        }
+        */
+        ruta = properties.getProperty(reporte);
+        return ruta;
+    }
 
     public ArrayList<String> cleanOut(ArrayList<String> files) {
         ArrayList<String> return_files = new ArrayList<String>();
@@ -20,27 +42,4 @@ public class Assets {
         return return_files;
     }
 
-    public ArrayList<String> getActivaciones() {
-        return activaciones;
-    }
-
-    public ArrayList<String> getCobranza() {
-        return cobranza;
-    }
-
-    public ArrayList<String> getErrores() {
-        return errores;
-    }
-
-    public ArrayList<String> getFacturacion() {
-        facturacion.add("METRICAS_DIARIO");
-        return facturacion;
-    }
-
-    public ArrayList<String> getTasacion() {
-        tasacion.add("00L");
-        return tasacion;
-    }
-
-    
 }

@@ -44,7 +44,7 @@ download_files() {
 }
 
 send_ftp() {
-    https://www.geeksforgeeks.org/shell-script-to-put-file-in-a-ftp-server/
+    
 }
 
 if [ $1 = "list_folders" ]

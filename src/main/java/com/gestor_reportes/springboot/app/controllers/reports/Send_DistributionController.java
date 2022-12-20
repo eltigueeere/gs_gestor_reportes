@@ -31,9 +31,8 @@ public class Send_DistributionController {
     public String getMoveFile(@PathVariable(value = "file") String file, Model model) throws Exception {
         Conection conect = new Conection("move_and_backup ".concat(file), "move_and_backup.txt");
         ArrayList<String> mv_file = new ArrayList<String>();
-        String dirDestino="";
         String reporte="";
-        String fecha="";
+        String ftp_parametros="";
         conect.exeSsh();
         mv_file = conect.downloadInfo();
         String[] parts = mv_file.get(0).split("/");
@@ -44,7 +43,23 @@ public class Send_DistributionController {
                 break;
             }
           }
-          conect.exeSshWitchParam("mv_wy " + mv_file.get(0) +" "+ reporte );
+          ftp_parametros = assets.readPropertis(reporte);
+          try {
+            if( !ftp_parametros.isEmpty()) {
+              String[] ftp_parametros_multiples = ftp_parametros.split("@");
+              for (String _parametros : ftp_parametros_multiples) {
+                if( !_parametros.isEmpty() ){
+                  //Inicia FTP
+                  System.out.println("ftp_parametros");
+                  //////conect.exeSshWitchParam("send_ftp " + mv_file.get(0));        
+                } // else no esta progrmado para mandar             
+              }
+            }
+          } catch(Exception e ) {
+            System.out.println("Error parametros o falta de");
+          }
+          //Mopver y respladar 
+          //conect.exeSshWitchParam("mv_wy " + mv_file.get(0) +" "+ reporte );
         return "redirect:/pre_revision_y_distribucion_de_reportes";
     }
 
