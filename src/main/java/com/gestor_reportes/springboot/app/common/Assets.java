@@ -9,6 +9,7 @@ public class Assets {
     public String readPropertis(String reporte) {
         String ruta = "";
         Properties properties = new Properties();
+        /*
         java.net.URL url = ClassLoader.getSystemResource("ftp.properties");
 
         try  {
@@ -19,7 +20,6 @@ public class Assets {
         catch (IOException e) {
             e.printStackTrace();
         }
-        /*
         System.out.println(properties.getProperty("hostname"));
         Set<String> keys = properties.stringPropertyNames();
         for (String key : keys) {
@@ -28,6 +28,13 @@ public class Assets {
             }
         }
         */
+        properties = new Properties();
+        try {
+            properties.load(Assets.class.getClassLoader().getResourceAsStream("ftp.properties"));
+        } catch (IOException ex) {
+            System.out.println(ex);
+            // log.warn("IOException al leer el archivo::::" + ex.getMessage(), ex);
+        }
         ruta = properties.getProperty(reporte);
         return ruta;
     }

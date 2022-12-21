@@ -41,7 +41,7 @@ public class Conection {
         System.out.println("Crating SFTP Channel.");
         ChannelSftp sftpChannel = (ChannelSftp) session.openChannel("sftp");
         sftpChannel.connect();
-        System.out.println("SFTP Channel created.");
+        System.out.println("SFTP Channel created to send file.");
         sftpChannel.put(source, destination);
     }
 
@@ -74,7 +74,7 @@ public class Conection {
         System.out.println("Crating SFTP Channel.");
         ChannelSftp sftpChannel = (ChannelSftp) session.openChannel("sftp");
         sftpChannel.connect();
-        System.out.println("SFTP Channel created.");
+        System.out.println("SFTP Channel created to download info.");
 
         InputStream inputStream = sftpChannel.get(remoteFile);
 
