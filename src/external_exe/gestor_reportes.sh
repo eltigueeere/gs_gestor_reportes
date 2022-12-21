@@ -43,10 +43,6 @@ download_files() {
     ls  $( find /u01/Telcel/REPORTS/BESGestorReports/done -type f -name $1 ) > /u01/Telcel/DATA/GestorReportes/download_file.txt
 }
 
-send_ftp() {
-    
-}
-
 if [ $1 = "list_folders" ]
 then
     list_folders
@@ -62,10 +58,6 @@ then
 elif [ $1 = "mv_wy" ]
 then
     mv_wy $2 $3 
-elif [ $1 = "send_ftp" ]
-then
-    send_ftp $2 $3
 else
     echo "no es parametro"
 fi
-

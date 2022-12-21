@@ -89,11 +89,11 @@
 
 	<build>
 		<plugins>
-			<plugin>
+			<!--<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<!--<plugin>
+			</plugin>-->
+			<plugin>
 				<groupId>io.openliberty.tools</groupId>
 				<artifactId>liberty-maven-plugin</artifactId>
 				<version>3.2</version>
@@ -106,7 +106,7 @@
 					</assemblyArtifact> 
 					<serverStartTimeout>120</serverStartTimeout> 
 				</configuration>
-			</plugin>-->
+			</plugin>
 		</plugins>
 	</build>
 

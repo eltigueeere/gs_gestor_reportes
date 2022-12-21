@@ -33,6 +33,7 @@ public class Send_DistributionController {
         ArrayList<String> mv_file = new ArrayList<String>();
         String reporte="";
         String ftp_parametros="";
+        String[] send_parametros;
         conect.exeSsh();
         mv_file = conect.downloadInfo();
         String[] parts = mv_file.get(0).split("/");
@@ -47,11 +48,12 @@ public class Send_DistributionController {
           try {
             if( !ftp_parametros.isEmpty()) {
               String[] ftp_parametros_multiples = ftp_parametros.split("@");
-              for (String _parametros : ftp_parametros_multiples) {
-                if( !_parametros.isEmpty() ){
+              for( int i=0; i<=ftp_parametros_multiples.length; i++) {
+                if( !ftp_parametros_multiples[i].isEmpty() ){
+                  send_parametros = ftp_parametros_multiples[i].split("-");
                   //Inicia FTP
                   System.out.println("ftp_parametros");
-                  //////conect.exeSshWitchParam("send_ftp " + mv_file.get(0));        
+                  conect.sendFile(mv_file.get(0),  send_parametros[3],  send_parametros[1],  send_parametros[0],  send_parametros[2]);
                 } // else no esta progrmado para mandar             
               }
             }

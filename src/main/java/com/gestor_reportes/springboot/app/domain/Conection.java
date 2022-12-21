@@ -27,6 +27,24 @@ public class Conection {
         this.remoteFile = "/u01/Telcel/DATA/GestorReportes/".concat(remoteFile);
     }
 
+    public void sendFile(String source, String destination, String _username, String _host, String _password) throws JSchException, SftpException {
+        ///String _username = "svsapcc";
+        ///String _host = "10.119.160.156";
+        ///String _password = "MimTlcl17+";
+        JSch jsch = new JSch();
+        Session session = jsch.getSession(_username, _host, port);
+        session.setPassword(_password);
+        session.setConfig("StrictHostKeyChecking", "no");
+        System.out.println("Establishing Connection...");
+        session.connect();
+        System.out.println("Connection established.");
+        System.out.println("Crating SFTP Channel.");
+        ChannelSftp sftpChannel = (ChannelSftp) session.openChannel("sftp");
+        sftpChannel.connect();
+        System.out.println("SFTP Channel created.");
+        sftpChannel.put(source, destination);
+    }
+
     public void downloadFile(String source, String destination) throws JSchException, SftpException {
         //String source = "/u01/Telcel/REPORTS/BESGestorReports/done/00L/20220621/00L_RCMRC371_REPORTE_DE_AJUSTES_FACTURADOS_GSM_POR_CICLO_31175.20220621114744_FC14_06_2022_C14_R01_NoData.xlsx";
         //String destination = "C:\\Users\\jguerrero\\Downloads\\lalo.xlsx";
