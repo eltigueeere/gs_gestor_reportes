@@ -53,7 +53,7 @@ public class Send_DistributionController {
                   send_parametros = ftp_parametros_multiples[i].split("-");
                   //Inicia FTP
                   System.out.println("ftp_parametros");
-                  conect.sendFile(mv_file.get(0),  send_parametros[3],  send_parametros[1],  send_parametros[0],  send_parametros[2]);
+                  conect.sendFile("C:\\Users\\jguerrero\\Downloads\\lalo.txt",  send_parametros[3],  send_parametros[1],  send_parametros[0],  send_parametros[2]);
                 } // else no esta progrmado para mandar             
               }
             }
