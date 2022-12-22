@@ -30,15 +30,22 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <p th:text="${status} ?: 'UNKNOWN'"></p>
+                <!--<p th:text="${status} ?: 'UNKNOWN'"></p>-->
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Seleccina el reporte o reportes a ejecutar por ciclo.</h3> <br>
-                                <form th:action="@{/form_reportes_bo_ciclo}" th:object="${reportes}" method="post"
+                                <form th:action="@{/form_reportes_bo}" th:object="${reportes}" method="post"
                                     enctype="multipart/form-data">
-                                    <label for="reportes" class="col-sm-2 col-form-label">Reportes:</label>
+                                    <input type="hidden" id="tipo" name="tipo" value="c">
+                                    <label for="fecha_inicio" class="col-6 col-form-label">Ejecutar todos los reportes:</label>
+                                    <div class="form-control-group row">
+                                        <div class="col-sm-6" style="background-color: lightskyblue;">
+                                            <input type="checkbox" id="all" name="all" value="all"><span> Todos los reportes.</span><br>   
+                                        </div>
+                                    </div>
+                                    <label for="reportes" class="col-6 col-form-label">Reportes individuales:</label>
                                     <div class="form-group row">
                                         <div class="col-sm-6">
                                             <input type="checkbox" id="414_901" name="414_901" value="414_901"><span> 414_901</span><br>

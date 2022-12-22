@@ -8,35 +8,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gestor_reportes.springboot.app.domain.Conection;
+
 
 @Controller
 public class RunReports {
-
-
-    //REP. POR PERIODO
-
-    @PostMapping(value="/form_reportes_bo_periodo")
-    public String postPeriodo(@RequestParam Map<String, String> reportes, 
-        Model model ) {
-        return "redirect:/reportes_bo_periodo";
-    }
-    
 
     @Secured({"ROLE_ADMIN", "ROLE_MESA_CONTROL"})
     @GetMapping("/reportes_bo_periodo")
     public String getReportesBoPeroido() {        
         return "vieFromMenu/reportes_bo_periodo";
-    }
-
-
-    //REP. POR Fecha
-
-    @PostMapping(value="/form_reportes_bo_fecha")
-    public String postfecha(@RequestParam Map<String, String> reportes, 
-        Model model ) {
-        return "redirect:/reportes_bo_fecha";
-    }
-    
+    }    
     
     @Secured({"ROLE_ADMIN", "ROLE_MESA_CONTROL"})
     @GetMapping("/reportes_bo_fecha")
@@ -45,10 +27,40 @@ public class RunReports {
     }
 
     //REP. POR CILCO
-    @PostMapping(value="/form_reportes_bo_ciclo")
-    public String postCiclo(@RequestParam Map<String, String> reportes, 
-        Model model ) {
-        return "redirect:/reportes_bo_ciclo";
+    @PostMapping(value="/form_reportes_bo")
+    public String postCiclo(@RequestParam Map<String, String> reportes, Model model ) {
+        Conection runReports = new Conection("", ""); 
+        Object[] __reportes;
+        String ruta = "/u01/Telcel/CODE/BESRepBoFiles/Shells/";
+        String rutaFix = "/u01/Telcel/DATA/FIX/reportes/BESRepBoFiles/Shells/";
+        String shAllReports = "BESRepBoGenLauncher.sh";
+        String shOnereport = "BESRepBoGenerator.sh";
+        if( !reportes.get("tipo").isEmpty() ){
+            try {
+                if( reportes.get("all") != null ) {
+                    //EJECUTAR TODOS LOS REPORTES
+                    if( !reportes.get("tipo").equals("p")) {
+                        runReports.runReports(rutaFix + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/"));
+                        //System.out.println(rutaFix + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/"));
+                    } else {
+                        runReports.runReports(ruta + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/"));
+                        //System.out.println(ruta + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/"));
+                    }
+                } else {
+                    //ejecutar individual
+                    __reportes = reportes.keySet().toArray();
+                    for( int i=2; i<__reportes.length-1; i++ ){
+                        runReports.runReports(ruta + shOnereport + " " + __reportes[i] + " " + reportes.get("fecha_inicio").replace("-", "/"));
+                        //System.out.println(ruta + shOnereport + " " + __reportes[i] + " " + reportes.get("fecha_inicio").replace("-", "/"));
+                    }
+                }
+            } catch(Exception ex) {
+                System.out.print(ex);
+            }                
+        } else {
+            System.out.println("No hay hidden");
+        }
+        return "redirect:/";
     }
     
 

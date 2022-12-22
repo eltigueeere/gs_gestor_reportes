@@ -161,4 +161,41 @@ public class Conection {
         return response;
     }
 
+    public boolean runReports(String comand) throws Exception {
+        Session session = null;
+        ChannelExec channel = null;
+        boolean response = true;
+        try {
+            JSch jsch = new JSch();
+            session = jsch.getSession(username, host, port);
+            session.setPassword(password);
+            session.setConfig("StrictHostKeyChecking", "no");
+            session.connect();
+            channel = (ChannelExec) session.openChannel("exec");
+            channel.setCommand(comand);
+            ByteArrayOutputStream responseStream = new ByteArrayOutputStream();
+            ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+            channel.setOutputStream(responseStream);
+            channel.setErrStream(errorStream);
+            channel.connect();
+            while (channel.isConnected()) {
+                Thread.sleep(100);
+            }
+            //response = new String(responseStream.toByteArray());
+            String errorResponse = new String(errorStream.toByteArray());
+            if (!errorResponse.isEmpty()) {
+                //throw new Exception(errorResponse);
+                response = false;
+                System.out.println(errorResponse);
+            }
+        } finally {
+            if (session != null)
+                session.disconnect();
+            if (channel != null)
+                channel.disconnect();
+        }
+        
+        return response;
+    }
+
 }

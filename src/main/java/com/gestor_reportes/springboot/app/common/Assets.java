@@ -1,7 +1,6 @@
 package com.gestor_reportes.springboot.app.common;
 
 import java.util.ArrayList;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 public class Assets {

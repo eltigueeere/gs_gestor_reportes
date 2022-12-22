@@ -30,15 +30,22 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <p th:text="${status} ?: 'UNKNOWN'"></p>
+                <!--<p th:text="${status} ?: 'UNKNOWN'"></p>-->
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Seleccina el reporte o reportes a ejecutar por periodo.</h3> <br>
-                                <form th:action="@{/form_reportes_bo_fecha}" th:object="${reportes}" method="post"
+                                <form th:action="@{/form_reportes_bo}" th:object="${reportes}" method="post"
                                     enctype="multipart/form-data">
-                                    <label for="reportes" class="col-sm-2 col-form-label">Reportes:</label>
+                                    <input type="hidden" id="tipo" name="tipo" value="p">
+                                    <label for="fecha_inicio" class="col-6 col-form-label">Ejecutar todos los reportes:</label>
+                                    <div class="form-control-group row">
+                                        <div class="col-sm-6" style="background-color: lightskyblue;">
+                                            <input type="checkbox" id="all" name="all" value="all"><span> Todos los reportes.</span><br>   
+                                        </div>
+                                    </div>
+                                    <label for="reportes" class="col-6 col-form-label">Reportes individuales:</label>
                                     <div class="form-group row">
                                         <div class="col-sm-6">
                                             <input type="checkbox" id="0XW_201" name="0XW_201" value="0XW_201"><span> 0XW_201</span><br>
@@ -67,7 +74,6 @@
                                             <input type="checkbox" id="1RH_69C" name="1RH_69C" value="1RH_69C"><span> 1RH_69C</span><br>
                                             <input type="checkbox" id="467_441" name="467_441" value="467_441"><span> 467_441</span><br>
                                             <input type="checkbox" id="CRD_CSF" name="CRD_CSF" value="CRD_CSF"><span> CRD_CSF</span><br>
-                                            <input type="checkbox" id="952_192" name="952_192" value="952_192"><span> 952_192</span><br>
                                         </div>
                                     </div>
                                     <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha inicio:</label>
