@@ -1,9 +1,11 @@
 package com.gestor_reportes.springboot.app.controllers.reports;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletResponse;
@@ -64,7 +66,7 @@ public class Send_DistributionController {
         return "redirect:/pre_revision_y_distribucion_de_reportes";
     }
 
-    //This for resourse server
+    //This for resourse un our server
     @RequestMapping(value = "downloadTestFile", method = RequestMethod.GET)
     public void getSteamingFile1(HttpServletResponse response) throws IOException {
         response.setContentType("application/txt");
@@ -75,18 +77,62 @@ public class Send_DistributionController {
             response.getWriter().write(nRead);
         }
     }
-
-    //this locate resource on server
+    
     @Secured({ "ROLE_ADMIN", "ROLE_MESA_CONTROL" })
     @GetMapping("/download_file/{file}")
-    public String getDownload_file(@PathVariable(value = "file") String file, Model model) throws Exception {
-        Conection conect = new Conection("download_files ".concat(file), "download_file.txt");
+    public String getDownload_file(@PathVariable(value = "file") String _file, Model model, HttpServletResponse response) throws Exception {
+        String fileName = _file;
+        Conection conect = new Conection("download_files ".concat(_file), "download_file.txt");
         ArrayList<String> down_file = new ArrayList<String>();
         conect.exeSsh();
         down_file = conect.downloadInfo();
-        conect.downloadFile(down_file.get(0), "C:\\Users\\jguerrero\\Downloads\\".concat(file));
-        
-        return "redirect:/";
+        //This part is to search for the file outside the same server and deposit it in a resource folder for use
+        //conect.downloadFile(down_file.get(0), "C:\\Users\\jguerrero\\Downloads\\".concat(file));
+        //Descarga
+        if (fileName != null) {
+
+            // Establecer ruta de archivo
+            File file = new File(down_file.get(0));
+            if (file.exists()) {
+                response.setContentType("application/octet-stream");//
+                response.setHeader("content-type", "application/octet-stream");
+                response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);// establecer el nombre del archivo
+                byte[] buffer = new byte[1024];
+                FileInputStream fis = null;
+                BufferedInputStream bis = null;
+                try {
+                    fis = new FileInputStream(file);
+                    bis = new BufferedInputStream(fis);
+                    OutputStream os = response.getOutputStream();
+                    int i = bis.read(buffer);
+                    while (i != -1) {
+                        os.write(buffer, 0, i);
+                        i = bis.read(buffer);
+                    }
+                    System.out.println("success");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    if (bis != null) {
+                        try {
+                            bis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (fis != null) {
+                        try {
+                            fis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            } else {
+                return "redirect:/pre_revision_y_distribucion_de_reportes";
+            }
+        }
+        return null;
     }
 
     @Secured({"ROLE_ADMIN", "ROLE_MESA_CONTROL"})

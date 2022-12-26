@@ -61,11 +61,11 @@
                     <tr th:each="file: ${files}">
                       <td th:text="${file}"></td>
                       <td class="project-actions text-right">
-                        <!--<a class="btn btn-primary btn-sm" th:href="@{'/download_file/' + ${file}}">
+                        <a class="btn btn-primary btn-sm" th:href="@{'/download_file/' + ${file}}">
                           <i class="fas fa-folder">
                           </i>
                           View
-                        </a>-->
+                        </a>
                         <a class="btn btn-info btn-sm" th:href="@{'/move_and_backup/' + ${file}}">
                           <i class="far fa-envelope">
                           </i>
