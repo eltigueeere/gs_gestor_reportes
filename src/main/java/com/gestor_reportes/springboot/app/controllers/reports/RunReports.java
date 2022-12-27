@@ -40,7 +40,7 @@ public class RunReports {
                 if( reportes.get("all") != null ) {
                     //EJECUTAR TODOS LOS REPORTES
                     if( !reportes.get("tipo").equals("p")) {
-                        runReports.runReports(rutaFix + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/"));
+                        runReports.runReports(ruta + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/"));
                         //System.out.println(rutaFix + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/"));
                     } else {
                         runReports.runReports(ruta + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/"));

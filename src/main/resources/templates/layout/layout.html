@@ -170,9 +170,9 @@
             </ul>
         </nav> <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4" th:fragment="aside">
+        <aside class="main-sidebar elevation-4" th:fragment="aside" style="color: white; background-color: #022a50;">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link" style="text-align: center; margin-left: auto; margin-right: auto;">
+            <a href="index3.html" class="brand-link" style=" color: white;text-align: center; margin-left: auto; margin-right: auto;">
                 <img src="dist/img/logoTelcel.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8; background-color: white;">
                     <br>
@@ -187,12 +187,12 @@
                         <img src="dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"><span sec:authentication="name"></a>
+                        <a href="#" class="d-block"><span style="color: white;" sec:authentication="name"></a>
                     </div>
                 </div>
 
                 <!-- SidebarSearch Form -->
-                <div class="form-inline">
+                <div class="form-inline" style="color: white;">
                     <div class="input-group" data-widget="sidebar-search">
                         <input class="form-control form-control-sidebar" type="search" placeholder="Search"
                             aria-label="Search">
@@ -205,12 +205,12 @@
                 </div>
 
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
+                <nav class="mt-2" style="color: white;">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                        data-accordion="false" >
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                        <li class="nav-item menu-open">
+                        <li class="nav-item menu-open" >
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fa fa-flag"></i>
                                 <p>
@@ -222,19 +222,19 @@
                                 <li class="nav-item">
                                     <a href="./reportes_bo_ciclo" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Ejecutar Reportes BO Cilco</p>
+                                        <p style="color: white;">Ejecutar Reportes BO Cilco</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="./reportes_bo_fecha" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Ejecutar Reportes BO Fecha</p>
+                                        <p style="color: white;">Ejecutar Reportes BO Fecha</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="./reportes_bo_periodo" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Ejecutar Reportes BO Periodo</p>
+                                        <p style="color: white;">Ejecutar Reportes BO Periodo</p>
                                     </a>
                                 </li>
                                 <!--<li class="nav-item">
@@ -254,9 +254,9 @@
                         <li class="nav-item">
                             <a href="pre_revision_y_distribucion_de_reportes" class="nav-link">
                                 <i class="nav-icon fa fa-paper-plane"></i>
-                                <p>
+                                <p style="color: white;">
                                     Revision y distribución de reportes
-                                    <span class="right badge badge-danger">New</span>
+                                    <span class="badge badge-info right">+1</span>
                                 </p>
                             </a>
                         </li>
@@ -324,9 +324,9 @@
                         <li class="nav-item">
                             <a href="pages/calendar.html" class="nav-link">
                                 <i class="nav-icon fas fa fa-eye"></i>
-                                <p>
+                                <p style="color: white;">
                                     Consulta de reportes
-                                    <span class="badge badge-info right">+1</span>
+                                    <span class="right badge badge-danger">New</span>
                                 </p>
                             </a>
                         </li>
