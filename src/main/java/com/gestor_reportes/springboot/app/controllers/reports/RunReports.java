@@ -31,17 +31,16 @@ public class RunReports {
     public String postCiclo(@RequestParam Map<String, String> reportes, Model model ) {
         Conection runReports = new Conection("", ""); 
         Object[] __reportes;
-        String ruta = "/u01/Telcel/CODE/BESRepBoFiles/Shells/";
-        String rutaFix = "/u01/Telcel/DATA/FIX/reportes/BESRepBoFiles/Shells/";
+        String ruta = "sh /u01/Telcel/CODE/BESRepBoFiles/Shells/";
         String shAllReports = "BESRepBoGenLauncher.sh";
         String shOnereport = "BESRepBoGenerator.sh";
         if( !reportes.get("tipo").isEmpty() ){
             try {
                 if( reportes.get("all") != null ) {
                     //EJECUTAR TODOS LOS REPORTES
-                    if( !reportes.get("tipo").equals("p")) {
-                        runReports.runReports(ruta + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/"));
-                        //System.out.println(rutaFix + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/"));
+                    if( reportes.get("tipo").equals("P")) {
+                        runReports.runReports(ruta + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/") + " " +reportes.get("fecha_fin").replace("-", "/"));
+                        //System.out.println(ruta + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/") + " " +reportes.get("fecha_fin").replace("-", "/"));
                     } else {
                         runReports.runReports(ruta + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/"));
                         //System.out.println(ruta + shAllReports + " " + reportes.get("tipo") + " " + reportes.get("fecha_inicio").replace("-", "/"));
@@ -49,9 +48,17 @@ public class RunReports {
                 } else {
                     //ejecutar individual
                     __reportes = reportes.keySet().toArray();
-                    for( int i=2; i<__reportes.length-1; i++ ){
-                        runReports.runReports(ruta + shOnereport + " " + __reportes[i] + " " + reportes.get("fecha_inicio").replace("-", "/"));
-                        //System.out.println(ruta + shOnereport + " " + __reportes[i] + " " + reportes.get("fecha_inicio").replace("-", "/"));
+                    if( reportes.get("tipo").equals("P")) {
+                        for( int i=2; i<__reportes.length-2; i++ ) {
+                            runReports.runReports(ruta + shOnereport + " " + __reportes[i] + " " + reportes.get("fecha_inicio").replace("-", "/") + " " + reportes.get("fecha_fin").replace("-", "/"));
+                            //System.out.println(ruta + shOnereport + " " + __reportes[i] + " " + reportes.get("fecha_inicio").replace("-", "/") + " " + reportes.get("fecha_fin").replace("-", "/") );
+
+                        }
+                    } else {
+                        for( int i=2; i<__reportes.length-1; i++ ) {
+                            runReports.runReports(ruta + shOnereport + " " + __reportes[i] + " " + reportes.get("fecha_inicio").replace("-", "/"));
+                            //System.out.println(ruta + shOnereport + " " + __reportes[i] + " " + reportes.get("fecha_inicio").replace("-", "/"));
+                        }
                     }
                 }
             } catch(Exception ex) {
