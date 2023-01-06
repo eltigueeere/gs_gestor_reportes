@@ -9,11 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gestor_reportes</groupId>
-	<artifactId>portal_reportes</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>PortalReportes</artifactId>
 	<packaging>war</packaging>
-	<name>portal_reportes</name>
-	<description>Demo project for Spring Boot</description>
+	<version>0.1</version>
+	<name>PortalReportes</name>
 
 	<properties>
 		<java.version>8</java.version>
