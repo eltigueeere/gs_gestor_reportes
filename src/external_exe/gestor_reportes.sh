@@ -1,6 +1,6 @@
 #! /bin/bash
 # Script by la base dev
-
+# dos2unix nameFile.sh
 #Description parameters
 #list_folders 
 #download_folders

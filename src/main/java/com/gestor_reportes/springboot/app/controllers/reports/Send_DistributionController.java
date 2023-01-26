@@ -54,13 +54,12 @@ public class Send_DistributionController {
                 if( !ftp_parametros_multiples[i].isEmpty() ){
                   send_parametros = ftp_parametros_multiples[i].split("-");
                   //Inicia FTP
-                  conect.sendFile(mv_file.get(0),  send_parametros[3],  send_parametros[1],  send_parametros[0],  send_parametros[2]);
+                  conect.sendFile(send_parametros[0],  send_parametros[1],  send_parametros[2],  send_parametros[3], mv_file.get(0));
                 } // else no esta progrmado para mandar             
               }
             }
           } catch(Exception e ) {
             System.out.println("Error parametros o falta de");
-            return "redirect:/";
           }
           //Mopver y respladar.
           conect.exeSshWitchParam("mv_wy " + mv_file.get(0) +" "+ reporte );

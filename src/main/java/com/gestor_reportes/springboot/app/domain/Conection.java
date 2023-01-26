@@ -27,7 +27,7 @@ public class Conection {
         this.remoteFile = "/u01/Telcel/DATA/GestorReportes/".concat(remoteFile);
     }
 
-    public void sendFile(String source, String destination, String _username, String _host, String _password) throws JSchException, SftpException {
+    public void sendFile(String _host, String _username, String _password, String destination, String source) throws JSchException, SftpException {
         ///String _username = "svsapcc";
         ///String _host = "10.119.160.156";
         ///String _password = "MimTlcl17+";
