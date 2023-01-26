@@ -60,8 +60,9 @@ public class Send_DistributionController {
             }
           } catch(Exception e ) {
             System.out.println("Error parametros o falta de");
+            return "redirect:/";
           }
-          //Mopver y respladar 
+          //Mopver y respladar.
           conect.exeSshWitchParam("mv_wy " + mv_file.get(0) +" "+ reporte );
         return "redirect:/pre_revision_y_distribucion_de_reportes";
     }
@@ -138,11 +139,16 @@ public class Send_DistributionController {
     @Secured({"ROLE_ADMIN", "ROLE_MESA_CONTROL"})
     @GetMapping("/revision_y_distribucion_de_reportes")
     public String showReporFromDir(Model model) throws JSchException, SftpException {
-        Conection conect = new Conection("download_folders ", "download_folders.txt");
-        ArrayList<String> files = new ArrayList<String>();
-        files = assets.cleanOut(conect.downloadInfo());
-        model.addAttribute("files", files);
-        return "vieFromMenu/revision_y_distribucion_de_reportes.html";
+        try{
+            Conection conect = new Conection("download_folders ", "download_folders.txt");
+            ArrayList<String> files = new ArrayList<String>();
+            files = assets.cleanOut(conect.downloadInfo());
+            model.addAttribute("files", files);
+            return "vieFromMenu/revision_y_distribucion_de_reportes.html";
+        }
+        catch(Exception e){
+            return "redirect:/";
+        }
     }
     
     @Secured({"ROLE_ADMIN", "ROLE_MESA_CONTROL"})
@@ -151,11 +157,12 @@ public class Send_DistributionController {
         Conection conect = new Conection("download_folders ".concat(dir), "");
         try {
             conect.exeSsh();
+            return "redirect:/revision_y_distribucion_de_reportes";
+
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        
-        return "redirect:/revision_y_distribucion_de_reportes";
+            return "redirect:/";
+        }        
     }
 
     @Secured({"ROLE_ADMIN", "ROLE_MESA_CONTROL"})
@@ -166,10 +173,11 @@ public class Send_DistributionController {
         try {
             conect.exeSsh();
             files = conect.downloadInfo();
+            model.addAttribute("files", files);
+            return "vieFromMenu/pre_revision_y_distribucion_de_reportes";
         } catch (Exception e) {
             e.printStackTrace();
+            return "redirect:/";
         }
-        model.addAttribute("files", files);
-        return "vieFromMenu/pre_revision_y_distribucion_de_reportes";
     }
 }

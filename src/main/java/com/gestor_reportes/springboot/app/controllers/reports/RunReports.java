@@ -63,6 +63,7 @@ public class RunReports {
                 }
             } catch(Exception ex) {
                 System.out.print(ex);
+                return "redirect:/";
             }                
         } else {
             System.out.println("No hay hidden");
