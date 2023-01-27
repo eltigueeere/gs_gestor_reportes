@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gestor_reportes.springboot.app.domain.Conection;
 
-
 @Controller
 public class RunReports {
 
