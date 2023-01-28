@@ -64,12 +64,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!--ORACLE-->
+		<!--ORACLE
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<version>19.3</version>
 		</dependency>
+		-->
 		<!--ssh-->
 		<dependency>
 			<groupId>com.jcraft</groupId>
